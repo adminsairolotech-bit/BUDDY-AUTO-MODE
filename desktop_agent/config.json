@@ -1,0 +1,56 @@
+{
+  "server_url": "ws://localhost:8001/ws",
+  "user_id": "",
+  "api_key": "",
+  "heartbeat_interval": 30,
+  "reconnect_delay": 5,
+  "log_file": "agent.log",
+  "allowed_commands": [
+    "open_app",
+    "open_file",
+    "open_url",
+    "type_text",
+    "press_key",
+    "hotkey",
+    "click",
+    "move_mouse",
+    "screenshot",
+    "get_clipboard",
+    "set_clipboard",
+    "run_command",
+    "get_windows",
+    "focus_window",
+    "close_window",
+    "get_system_info"
+  ],
+  "blocked_commands": [
+    "format",
+    "delete",
+    "rm -rf",
+    "del /f /s /q",
+    "powershell -enc",
+    "reg add",
+    "reg delete"
+  ],
+  "allowed_paths": [
+    "C:/Users"
+  ],
+  "blocked_paths": [
+    "C:/Windows",
+    "C:/Program Files",
+    "C:/Program Files (x86)",
+    "C:/Windows/System32"
+  ],
+  "require_confirmation_for": [
+    "run_command",
+    "screenshot",
+    "get_clipboard",
+    "set_clipboard",
+    "open_file"
+  ],
+  "max_action_timeout": 45,
+  "verify_command_signature": false,
+  "command_signature_secret": "",
+  "auto_start": true,
+  "minimize_to_tray": true
+}
