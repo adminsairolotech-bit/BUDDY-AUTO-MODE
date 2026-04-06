@@ -79,20 +79,18 @@ agenthub/agents/youtube/db
 memory/test_credentials.md
 
 # Mobile development
-android-sdk/-e 
-# Environment files
-*.env
-*.env.*
--e 
-# Environment files
-*.env
-*.env.*
--e 
-# Environment files
-*.env
-*.env.*
--e 
+android-sdk/
+
 # Environment files
 *.env
 *.env.*
 backend/ai_memory/
+# keep env templates
+!*.env.example
+!**/.env.example
+
+# Local test/runtime artifacts
+temp/
+pytest-cache-files-*/
+**/pytest-cache-files-*/
+.pytest_cache/

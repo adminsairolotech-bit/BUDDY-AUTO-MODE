@@ -22,6 +22,9 @@ CONFIRM_REQUIRED_DESKTOP_ACTIONS = {"run_command", "screenshot", "get_clipboard"
 
 
 def _action_text(intent: str, action_result: dict[str, Any]) -> str:
+    nested_text = action_result.get("result", {}).get("text") if isinstance(action_result.get("result"), dict) else None
+    if nested_text:
+        return nested_text
     if action_result.get("success"):
         if intent == "email":
             return "I sent that email."
@@ -58,7 +61,11 @@ async def _process_command_inner(payload: CommandRequest, current_user: dict, re
     parser = app_state.intent_parser
     task_router = app_state.task_router
 
-    conversation_id = payload.context.conversation_id if payload.context else f"conv_{uuid.uuid4().hex[:8]}"
+    conversation_id = (
+        payload.context.conversation_id
+        if payload.context and payload.context.conversation_id
+        else f"conv_{uuid.uuid4().hex[:8]}"
+    )
     conv_repo = ConversationRepository()
     task_repo = TaskRepository()
     memory = MemoryManager(user_id=user_id)
@@ -135,7 +142,8 @@ async def _process_command_inner(payload: CommandRequest, current_user: dict, re
         details={"intent": intent, "action": action, "risk_score": risk_score},
     )
 
-    assistant_text = ai_parse.get("response_text") or _action_text(intent, result)
+    assistant_text = ai_parse.get("response_text") if ai_parse.get("understood") else None
+    assistant_text = assistant_text or _action_text(intent, result)
     await conv_repo.append_message(
         user_id,
         conversation_id,
