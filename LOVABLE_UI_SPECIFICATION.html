@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUDDY AI - UI Specification for Lovable</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #12121a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            color: #6366f1;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+        }
+        
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #8b5cf6;
+            margin: 30px 0 15px;
+        }
+        
+        h4 {
+            font-size: 18px;
+            color: #06b6d4;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #a1a1aa;
+        }
+        
+        .card {
+            background: rgba(18, 18, 26, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 24px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        
+        .color-box {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .color-palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .color-item {
+            text-align: center;
+        }
+        
+        .color-name {
+            font-size: 12px;
+            color: #a1a1aa;
+            margin-top: 8px;
+        }
+        
+        .color-hex {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #6366f1;
+        }
+        
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #06b6d4;
+        }
+        
+        pre {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 15px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        th {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+            font-weight: 600;
+        }
+        
+        .wireframe {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            font-size: 11px;
+            line-height: 1.4;
+            white-space: pre;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 5px;
+        }
+        
+        .badge-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+        
+        .badge-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid #10b981;
+        }
+        
+        .api-endpoint {
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 4px solid #06b6d4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        
+        .method-get { background: #10b981; color: white; }
+        .method-post { background: #6366f1; color: white; }
+        .method-put { background: #f59e0b; color: white; }
+        .method-delete { background: #ef4444; color: white; }
+        
+        .screen-preview {
+            background: linear-gradient(145deg, rgba(99,102,241,0.05) 0%, rgba(139,92,246,0.02) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .btn-example {
+            display: inline-block;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 0 #4f46e5, 0 8px 20px rgba(99, 102, 241, 0.4);
+            margin: 10px;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
+            margin: 50px 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background: rgba(18, 18, 26, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .checklist li::before {
+            content: "☐ ";
+            color: #6366f1;
+        }
+        
+        @media print {
+            body {
+                background: #0a0a0f;
+                padding: 20px;
+            }
+            .card {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h1>🤖 BUDDY AI</h1>
+            <p style="font-size: 24px; color: #8b5cf6;">Complete UI Specification for Lovable</p>
+            <div style="margin-top: 20px;">
+                <span class="badge badge-primary">3D Design</span>
+                <span class="badge badge-primary">Glassmorphism</span>
+                <span class="badge badge-primary">Dark Theme</span>
+                <span class="badge badge-success">Backend Ready ✓</span>
+            </div>
+        </div>
+        
+        <!-- Document Info -->
+        <div class="card">
+            <h3>📋 Document Overview</h3>
+            <table>
+                <tr><td><strong>App Name</strong></td><td>BUDDY AI - Personal Assistant</td></tr>
+                <tr><td><strong>Backend URL</strong></td><td><code>https://buddy-automation.preview.emergentagent.com</code></td></tr>
+                <tr><td><strong>Design Style</strong></td><td>3D Glassmorphism, Futuristic, Dark Theme</td></tr>
+                <tr><td><strong>Target</strong></td><td>Premium AI Assistant Experience</td></tr>
+            </table>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- Design System -->
+        <h2>🎨 DESIGN SYSTEM</h2>
+        
+        <h3>Color Palette</h3>
+        <div class="card">
+            <h4>Primary Colors</h4>
+            <div class="color-palette">
+                <div class="color-item">
+                    <div class="color-box" style="background: #0a0a0f;"></div>
+                    <div class="color-name">Background Dark</div>
+                    <div class="color-hex">#0a0a0f</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #12121a;"></div>
+                    <div class="color-name">Card Dark</div>
+                    <div class="color-hex">#12121a</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #6366f1;"></div>
+                    <div class="color-name">Electric Indigo</div>
+                    <div class="color-hex">#6366f1</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #8b5cf6;"></div>
+                    <div class="color-name">Vivid Purple</div>
+                    <div class="color-hex">#8b5cf6</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #06b6d4;"></div>
+                    <div class="color-name">Cyber Cyan</div>
+                    <div class="color-hex">#06b6d4</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #10b981;"></div>
+                    <div class="color-name">Neon Green</div>
+                    <div class="color-hex">#10b981</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #f59e0b;"></div>
+                    <div class="color-name">Amber Glow</div>
+                    <div class="color-hex">#f59e0b</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #ef4444;"></div>
+                    <div class="color-name">Red Alert</div>
+                    <div class="color-hex">#ef4444</div>
+                </div>
+            </div>
+            
+            <h4>Gradients</h4>
+            <pre>
+Hero Gradient:    linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%)
+Card Gradient:    linear-gradient(145deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.05) 100%)
+Glow Effect:      0 0 40px rgba(99,102,241,0.3), 0 0 80px rgba(139,92,246,0.2)
+            </pre>
+        </div>
+        
+        <h3>Typography</h3>
+        <div class="card">
+            <h4>Font Families</h4>
+            <pre>
+Primary:    'Space Grotesk', sans-serif  (Headlines)
+Secondary:  'Inter', sans-serif          (Body)
+Monospace:  'JetBrains Mono', monospace  (Code/Commands)
+            </pre>
+            
+            <h4>Font Sizes</h4>
+            <table>
+                <tr><th>Element</th><th>Size</th><th>Weight</th></tr>
+                <tr><td>Hero Title</td><td>64px / 4rem</td><td>700</td></tr>
+                <tr><td>Page Title</td><td>48px / 3rem</td><td>600</td></tr>
+                <tr><td>Section Title</td><td>32px / 2rem</td><td>600</td></tr>
+                <tr><td>Card Title</td><td>24px / 1.5rem</td><td>500</td></tr>
+                <tr><td>Body Large</td><td>18px / 1.125rem</td><td>400</td></tr>
+                <tr><td>Body</td><td>16px / 1rem</td><td>400</td></tr>
+                <tr><td>Caption</td><td>14px / 0.875rem</td><td>400</td></tr>
+            </table>
+        </div>
+        
+        <h3>3D Effects & Glassmorphism</h3>
+        <div class="card">
+            <h4>Glass Card Style</h4>
+            <pre>
+.glass-card {
+  background: rgba(18, 18, 26, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: perspective(1000px) rotateX(2deg);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: perspective(1000px) rotateX(0deg) translateY(-8px);
+  box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+}
+            </pre>
+            
+            <h4>3D Button Style</h4>
+            <div style="margin: 20px 0;">
+                <span class="btn-example">🚀 LOGIN</span>
+                <span class="btn-example">✨ CREATE ACCOUNT</span>
+            </div>
+            <pre>
+.btn-3d {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border-radius: 16px;
+  padding: 16px 32px;
+  box-shadow: 
+    0 4px 0 #4f46e5,
+    0 8px 20px rgba(99, 102, 241, 0.4);
+}
+            </pre>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- Screens -->
+        <h2>📱 SCREENS & WIREFRAMES</h2>
+        
+        <h3>1. Splash / Loading Screen</h3>
+        <div class="screen-preview">
+            <div class="wireframe">
+┌─────────────────────────────────────────┐
+│                                         │
+│                                         │
+│            ╭───────────────╮            │
+│            │   🤖 LOGO     │  (3D Float)│
+│            │   BUDDY AI    │            │
+│            ╰───────────────╯            │
+│                                         │
+│         ████████░░░░░░░░░░ 45%          │
+│         Initializing AI Engine...       │
+│                                         │
+│                                         │
+└─────────────────────────────────────────┘
+            </div>
+            <p><strong>Elements:</strong> Full screen dark background, 3D animated logo, Particle effects, Loading progress bar with glow</p>
+        </div>
+        
+        <h3>2. Login Screen</h3>
+        <div class="screen-preview">
+            <div class="wireframe">
+┌─────────────────────────────────────────┐
+│  ← Back                                 │
+│                                         │
+│            ╭─────────────╮              │
+│            │  🤖 BUDDY   │ (3D Glow)    │
+│            ╰─────────────╯              │
+│                                         │
+│         Welcome Back, Human             │
+│         Your AI assistant awaits        │
+│                                         │
+│  ┌─────────────────────────────────┐    │
+│  │ 📧 Email                        │    │
+│  └─────────────────────────────────┘    │
+│                                         │
+│  ┌─────────────────────────────────┐    │
+│  │ 🔒 Password                     │    │
+│  └─────────────────────────────────┘    │
+│                                         │
+│  ┌─────────────────────────────────┐    │
+│  │         🚀 LOGIN                │    │
+│  └─────────────────────────────────┘    │
+│                                         │
+│         Don't have account?             │
+│         → Create Account                │
+│                                         │
+└─────────────────────────────────────────┘
+            </div>
+            <div class="api-endpoint">
+                <span class="method method-post">POST</span>
+                <code>/api/auth/login</code>
+                <pre>Body: { "email": "user@email.com", "password": "Password@123!" }
+Response: { "success": true, "token": "jwt...", "user": {...} }</pre>
+            </div>
+        </div>
+        
+        <h3>3. Register Screen</h3>
+        <div class="screen-preview">
+            <div class="wireframe">
+┌─────────────────────────────────────────┐
+│  ← Back                                 │
+│                                         │
+│            ╭─────────────╮              │
+│            │  🤖 BUDDY   │              │
+│            ╰─────────────╯              │
+│                                         │
+│         Create Your Account             │
+│         Join the AI revolution          │
+│                                         │
+│  ┌─────────────────────────────────┐    │
+│  │ 👤 Full Name                    │    │
+│  └─────────────────────────────────┘    │
+│                                         │
+│  ┌─────────────────────────────────┐    │
+│  │ 📧 Email                        │    │
+│  └─────────────────────────────────┘    │
+│                                         │
+│  ┌─────────────────────────────────┐    │
+│  │ 🔒 Password (min 12 chars)      │    │
+│  └─────────────────────────────────┘    │
+│  ✓ Uppercase ✓ Lowercase               │
+│  ✓ Number   ✓ Special char             │
+│                                         │
+│  ┌─────────────────────────────────┐    │
+│  │       ✨ CREATE ACCOUNT         │    │
+│  └─────────────────────────────────┘    │
+└─────────────────────────────────────────┘
+            </div>
+            <div class="api-endpoint">
+                <span class="method method-post">POST</span>
+                <code>/api/auth/register</code>
+                <pre>Body: { "email": "...", "password": "...", "name": "..." }
+Note: Password must have 12+ chars, uppercase, lowercase, number, special char</pre>
+            </div>
+        </div>
+        
+        <h3>4. Main Dashboard</h3>
+        <div class="screen-preview">
+            <div class="wireframe">
+┌─────────────────────────────────────────────────────────────────┐
+│  ┌─────┐                                              👤 User   │
+│  │BUDDY│  Dashboard    Skills    Integrations    Settings       │
+│  └─────┘                                                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   ╭─────────────────────────────────────────────────────────╮   │
+│   │     👋 Hello, {User Name}!                             │   │
+│   │     "How can I assist you today?"                       │   │
+│   │                                                         │   │
+│   │  ┌─────────────────────────────────────────────────┐    │   │
+│   │  │ 💬 Type your command or ask anything...    🎤 📎│    │   │
+│   │  └─────────────────────────────────────────────────┘    │   │
+│   ╰─────────────────────────────────────────────────────────╯   │
+│                                                                 │
+│   ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
+│   │ 🌤️ Weather      │  │ 📰 News         │  │ 🧮 Calculator   │ │
+│   └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+│                                                                 │
+│   ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
+│   │ 🌐 Translator   │  │ 📝 Notes        │  │ 🖥️ Desktop      │ │
+│   └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+│                                                                 │
+│   ╭─────────────────────────────────────────────────────────╮   │
+│   │  📊 Recent Activity                                     │   │
+│   │  • "What's the weather?" - 2 min ago                    │   │
+│   │  • "Translate hello to Hindi" - 5 min ago               │   │
+│   ╰─────────────────────────────────────────────────────────╯   │
+└─────────────────────────────────────────────────────────────────┘
+            </div>
+            <div class="api-endpoint">
+                <span class="method method-get">GET</span>
+                <code>/api/auth/me</code> - Get User Profile<br><br>
+                <span class="method method-post">POST</span>
+                <code>/api/command</code> - Send Command<br>
+                <pre>Body: { "command": "What's the weather?", "type": "text" }</pre>
+            </div>
+        </div>
+        
+        <h3>5. Chat Interface</h3>
+        <div class="screen-preview">
+            <div class="wireframe">
+┌─────────────────────────────────────────────────────────────────┐
+│  ← Dashboard              💬 BUDDY Chat              ⚙️ ⋮      │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   ╭─────────────────────────────────────────────────────╮       │
+│   │ 🤖 BUDDY                                            │       │
+│   │ Hello! I'm your AI assistant. I can help you with: │       │
+│   │ • Weather updates  • News  • Calculations          │       │
+│   ╰─────────────────────────────────────────────────────╯       │
+│                                                                 │
+│       ╭─────────────────────────────────────────────────╮       │
+│       │ What's the weather in Mumbai?              👤 You│      │
+│       ╰─────────────────────────────────────────────────╯       │
+│                                                                 │
+│   ╭─────────────────────────────────────────────────────╮       │
+│   │ 🤖 BUDDY                                   🌤️ Weather│      │
+│   │ Here's the weather for Mumbai:                      │       │
+│   │ ┌─────────────────────────────────────────┐         │       │
+│   │ │  🌡️ 32°C  │  💧 65%  │  💨 12 km/h     │         │       │
+│   │ └─────────────────────────────────────────┘         │       │
+│   ╰─────────────────────────────────────────────────────╯       │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │ 💬 Type your message...                         🎤  📎  ➤ │  │
+│  └───────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+            </div>
+        </div>
+        
+        <h3>6. Skills Page</h3>
+        <div class="screen-preview">
+            <h4>Built-in Skills (5 Total)</h4>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🌤️</div>
+                    <h4>Weather</h4>
+                    <p>Get weather updates for any location</p>
+                    <code>weather, temperature, forecast</code>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📰</div>
+                    <h4>News</h4>
+                    <p>Get latest news and updates</p>
+                    <code>news, headlines, updates</code>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🧮</div>
+                    <h4>Calculator</h4>
+                    <p>Perform mathematical calculations</p>
+                    <code>calculate, math, compute</code>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌐</div>
+                    <h4>Translator</h4>
+                    <p>Translate text between languages</p>
+                    <code>translate, convert</code>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📝</div>
+                    <h4>Notes</h4>
+                    <p>Create and manage quick notes</p>
+                    <code>note, remember, save</code>
+                </div>
+            </div>
+            <div class="api-endpoint">
+                <span class="method method-get">GET</span>
+                <code>/api/skills</code>
+            </div>
+        </div>
+        
+        <h3>7. Integrations Page</h3>
+        <div class="screen-preview">
+            <h4>Available Integrations (6 Total)</h4>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h4>Telegram</h4>
+                    <p>Send & receive messages</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📧</div>
+                    <h4>Gmail</h4>
+                    <p>Read and send emails</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📅</div>
+                    <h4>Calendar</h4>
+                    <p>Manage schedule and events</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📓</div>
+                    <h4>Notion</h4>
+                    <p>Access Notion workspace</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🐙</div>
+                    <h4>GitHub</h4>
+                    <p>Manage repositories</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h4>Gemini AI</h4>
+                    <p>Enhanced AI responses</p>
+                </div>
+            </div>
+            <div class="api-endpoint">
+                <span class="method method-get">GET</span>
+                <code>/api/integrations</code><br><br>
+                <span class="method method-post">POST</span>
+                <code>/api/integrations/{id}/connect</code>
+            </div>
+        </div>
+        
+        <h3>8. Desktop Agent Page</h3>
+        <div class="screen-preview">
+            <h4>Desktop Actions</h4>
+            <div class="feature-grid">
+                <div class="feature-item"><div class="feature-icon">📷</div>Screenshot</div>
+                <div class="feature-item"><div class="feature-icon">⌨️</div>Type Text</div>
+                <div class="feature-item"><div class="feature-icon">🖱️</div>Mouse</div>
+                <div class="feature-item"><div class="feature-icon">📋</div>Clipboard</div>
+                <div class="feature-item"><div class="feature-icon">📁</div>Files</div>
+                <div class="feature-item"><div class="feature-icon">🌐</div>Browser</div>
+                <div class="feature-item"><div class="feature-icon">🪟</div>Windows</div>
+                <div class="feature-item"><div class="feature-icon">⚡</div>Run Cmd</div>
+            </div>
+            <div class="api-endpoint">
+                <span class="method method-get">GET</span>
+                <code>/api/desktop/status</code><br><br>
+                <span class="method method-post">POST</span>
+                <code>/api/desktop/command</code>
+            </div>
+        </div>
+        
+        <h3>9. Schedules Page</h3>
+        <div class="screen-preview">
+            <div class="api-endpoint">
+                <span class="method method-get">GET</span>
+                <code>/api/schedules</code> - List<br><br>
+                <span class="method method-post">POST</span>
+                <code>/api/schedules</code> - Create<br>
+                <pre>Body: { "name": "Morning Briefing", "cron": "0 9 * * *", "actions": [...] }</pre>
+                <span class="method method-put">PUT</span>
+                <code>/api/schedules/{id}</code> - Update<br><br>
+                <span class="method method-delete">DELETE</span>
+                <code>/api/schedules/{id}</code> - Delete
+            </div>
+        </div>
+        
+        <h3>10. Settings Page</h3>
+        <div class="screen-preview">
+            <h4>Settings Sections</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 10px 0;">👤 <strong>Profile</strong> - Edit name, email</li>
+                <li style="padding: 10px 0;">🎨 <strong>Preferences</strong> - Language, Timezone, Personality</li>
+                <li style="padding: 10px 0;">🔐 <strong>Security</strong> - Change password, Logout all</li>
+                <li style="padding: 10px 0;">🗑️ <strong>Danger Zone</strong> - Export data, Delete account</li>
+            </ul>
+            <div class="api-endpoint">
+                <span class="method method-post">POST</span>
+                <code>/api/auth/logout</code><br><br>
+                <span class="method method-post">POST</span>
+                <code>/api/privacy/export</code><br><br>
+                <span class="method method-delete">DELETE</span>
+                <code>/api/memory/all</code><br><br>
+                <span class="method method-post">POST</span>
+                <code>/api/privacy/forget-me</code>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- API Reference -->
+        <h2>🔗 COMPLETE API REFERENCE</h2>
+        
+        <div class="card">
+            <h3>Base URL</h3>
+            <pre>https://buddy-automation.preview.emergentagent.com</pre>
+            
+            <h3>Authentication Header</h3>
+            <pre>Headers: { "Authorization": "Bearer {token}" }</pre>
+        </div>
+        
+        <div class="card">
+            <h3>All Endpoints</h3>
+            <table>
+                <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/auth/register</td><td>Register new user</td></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/auth/login</td><td>Login user</td></tr>
+                <tr><td><span class="method method-get">GET</span></td><td>/api/auth/me</td><td>Get current user</td></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/auth/refresh</td><td>Refresh token</td></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/auth/logout</td><td>Logout user</td></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/command</td><td>Send AI command</td></tr>
+                <tr><td><span class="method method-get">GET</span></td><td>/api/skills</td><td>List all skills</td></tr>
+                <tr><td><span class="method method-get">GET</span></td><td>/api/schedules</td><td>List schedules</td></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/schedules</td><td>Create schedule</td></tr>
+                <tr><td><span class="method method-put">PUT</span></td><td>/api/schedules/{id}</td><td>Update schedule</td></tr>
+                <tr><td><span class="method method-delete">DELETE</span></td><td>/api/schedules/{id}</td><td>Delete schedule</td></tr>
+                <tr><td><span class="method method-get">GET</span></td><td>/api/integrations</td><td>List integrations</td></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/integrations/{id}/connect</td><td>Connect</td></tr>
+                <tr><td><span class="method method-get">GET</span></td><td>/api/desktop/status</td><td>Desktop status</td></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/desktop/command</td><td>Send desktop cmd</td></tr>
+                <tr><td><span class="method method-get">GET</span></td><td>/api/memory/{key}</td><td>Get memory</td></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/memory</td><td>Store memory</td></tr>
+                <tr><td><span class="method method-delete">DELETE</span></td><td>/api/memory/all</td><td>Delete all memory</td></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/privacy/export</td><td>Export user data</td></tr>
+                <tr><td><span class="method method-post">POST</span></td><td>/api/privacy/forget-me</td><td>Delete account</td></tr>
+                <tr><td><span class="method method-get">GET</span></td><td>/api/agents</td><td>List agents</td></tr>
+                <tr><td><span class="method method-get">GET</span></td><td>/api/health</td><td>Health check</td></tr>
+            </table>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- Checklist -->
+        <h2>✅ IMPLEMENTATION CHECKLIST</h2>
+        
+        <div class="card">
+            <h3>Phase 1: Core</h3>
+            <ul class="checklist">
+                <li>Splash Screen with 3D animation</li>
+                <li>Login Screen with glassmorphism</li>
+                <li>Register Screen with password validation</li>
+                <li>Dashboard with skill cards</li>
+                <li>Chat Interface with message bubbles</li>
+            </ul>
+            
+            <h3>Phase 2: Features</h3>
+            <ul class="checklist">
+                <li>Skills Page - list all 5 skills</li>
+                <li>Integrations Page - 6 integration cards</li>
+                <li>Schedules Page - CRUD operations</li>
+                <li>Desktop Agent Page - status & actions</li>
+            </ul>
+            
+            <h3>Phase 3: Settings</h3>
+            <ul class="checklist">
+                <li>Settings Page with sections</li>
+                <li>Profile Edit modal</li>
+                <li>Privacy Controls</li>
+            </ul>
+            
+            <h3>Phase 4: Polish</h3>
+            <ul class="checklist">
+                <li>Loading States & Skeletons</li>
+                <li>Error Handling & Toast notifications</li>
+                <li>Hover & Click animations</li>
+                <li>Responsive Design</li>
+            </ul>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding: 40px; color: #a1a1aa;">
+            <p><strong>Document Version:</strong> 1.0</p>
+            <p><strong>Created For:</strong> Lovable.dev</p>
+            <p><strong>Backend Status:</strong> <span class="badge badge-success">✓ Ready</span></p>
+            <p><strong>Last Updated:</strong> April 2026</p>
+        </div>
+        
+    </div>
+</body>
+</html>
