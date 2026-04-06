@@ -1,0 +1,16 @@
+from __future__ import annotations
+
+from datetime import datetime
+from typing import Any
+
+
+async def run(user_id: str, job_id: str, job_data: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "success": True,
+        "title": "Email Digest",
+        "user_id": user_id,
+        "job_id": job_id,
+        "generated_at": datetime.utcnow().isoformat(),
+        "message": "Periodic unread/prioritized email digest placeholder.",
+        "job_data": job_data,
+    }
