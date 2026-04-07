@@ -1,8 +1,21 @@
-pyautogui==0.9.54
-pygetwindow==0.0.9
-websocket-client==1.7.0
-pillow==10.2.0
-psutil==5.9.8
-pyperclip==1.8.2
-pystray==0.19.5
-python-dotenv==1.0.0
+# BUDDY AI - ChatGPT & Codex Automation Agent
+# Requirements for Windows
+
+# Core
+selenium>=4.15.0
+pyautogui>=0.9.54
+pyperclip>=1.8.2
+pygetwindow>=0.0.9
+
+# For OCR (optional but recommended)
+pytesseract>=0.3.10
+Pillow>=10.0.0
+
+# Browser drivers (install separately or use webdriver-manager)
+webdriver-manager>=4.0.1
+
+# Existing desktop agent requirements
+websockets>=12.0
+aiohttp>=3.9.0
+cryptography>=41.0.0
+python-dotenv>=1.0.0

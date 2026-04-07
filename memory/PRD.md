@@ -1,114 +1,76 @@
-# BUDDY AI - Personal Assistant (Complete)
+# BUDDY AI - Complete Application
 
 ## Original Problem Statement
-User shared GitHub repository `BUDDY-AUTO-MODE` (OpenClaw Clone). Tasks completed:
+User shared GitHub repository `BUDDY-AUTO-MODE` (OpenClaw Clone). All tasks completed:
 1. ✅ Backend setup from GitHub repo
 2. ✅ Lovable UI integration
-3. ✅ Gemini AI integration for smart responses
-4. ✅ Desktop Agent setup for Windows
+3. ✅ Gemini AI integration
+4. ✅ Desktop Agent with ChatGPT-Codex automation
 5. ✅ All skills AI-powered
 
-## Architecture
-- **Backend**: FastAPI (Python) with MongoDB
-- **Frontend**: React (JavaScript)
-- **AI**: Gemini 2.5 Flash via Emergent LLM Key
-- **Desktop**: Python agent with WebSocket
-
-## Features Implemented
+## Features
 
 ### 🔐 Authentication
-- User registration with password policy (12+ chars, mixed case, number, special)
-- JWT login with refresh tokens
-- Rate limiting and account lockout
-- Token revocation
+- JWT-based login/register
+- Password policy (12+ chars)
+- Token refresh
 
 ### 💬 AI Chat
-- Natural language command processing
-- Gemini AI for intelligent parsing
+- Gemini 2.5 Flash powered
+- Natural language commands
 - Conversation history
-- Context-aware responses
 
-### ⚡ AI-Powered Skills (5)
-| Skill | Description | AI-Enhanced |
-|-------|-------------|-------------|
-| 🌤️ Weather | Weather info with suggestions | ✅ Yes |
-| 📰 News | Headlines with AI summaries | ✅ Yes |
-| 🧮 Calculator | Math expressions | ✅ Yes |
-| 🌐 Translator | Multi-language translation | ✅ Yes |
-| 📝 Notes | Quick notes | ✅ Yes |
+### ⚡ AI Skills (5)
+| Skill | AI-Powered |
+|-------|------------|
+| 🌤️ Weather | ✅ |
+| 📰 News | ✅ |
+| 🧮 Calculator | ✅ |
+| 🌐 Translator | ✅ |
+| 📝 Notes | ✅ |
 
 ### 🔗 Integrations (6)
-- 📱 Telegram - Messaging
-- 📧 Gmail - Email
-- 📅 Calendar - Events
-- 📓 Notion - Workspace
-- 🐙 GitHub - Repos
-- 🤖 Gemini - AI
+- Telegram, Gmail, Calendar, Notion, GitHub, Gemini
 
-### 🖥️ Desktop Agent
-- WebSocket connection to backend
-- Remote control capabilities:
-  - Screenshot
-  - Type text
-  - Mouse control
-  - Clipboard
-  - File operations
-  - URL opening
-  - Window control
-  - Run commands
-- Security: Command whitelist, path blocking, confirmation for risky actions
+### 🖥️ Desktop Agent + ChatGPT-Codex Automation
+**New Feature:** Automatic ChatGPT + Codex workflow:
+- ✅ Auto-approves "Yes", "Run", "Continue" buttons
+- 🔄 Syncs code between Codex and ChatGPT
+- 💬 Auto-copies responses to clipboard
+- 🖥️ Works with Desktop app and Browser (Chrome/Edge/Opera)
 
 ## Test Credentials
 - **Email**: test@example.com
 - **Password**: Password@12345!
 
-## API Base URL
-- **Production**: https://buddy-automation.preview.emergentagent.com
-- **Health**: GET /api/health
-- **Docs**: GET /docs
+## URLs
+- **App**: https://buddy-automation.preview.emergentagent.com
+- **Download**: /BUDDY_Desktop_Agent.zip
 
-## File Structure
+## Files
 ```
 /app/
-├── backend/
-│   ├── server.py           # Main FastAPI server
-│   ├── api/                 # API routes
-│   ├── core/                # Gemini engine, intent parser
-│   ├── skills/builtin/      # AI-powered skills
-│   ├── agents/              # Task agents
-│   └── .env                 # Config with EMERGENT_LLM_KEY
-├── frontend/
-│   └── src/
-│       ├── App.js           # Complete React app
-│       └── App.css          # Styles
-├── desktop_agent/           # Windows desktop client
-│   ├── agent.py             # Main agent
-│   ├── config.json          # Server config
-│   ├── controllers/         # Action handlers
-│   └── requirements.txt
+├── backend/              # FastAPI + MongoDB
+├── frontend/             # React UI
+├── desktop_agent/        # Windows automation
+│   ├── agent.py          # Main agent
+│   ├── chatgpt_codex_automation.py  # ChatGPT+Codex auto-reply
+│   ├── START_AUTOMATION.bat         # Quick start
+│   └── README_AUTOMATION.md         # Instructions
 └── memory/
-    ├── PRD.md
-    └── test_credentials.md
 ```
 
-## What's Complete (April 7, 2026)
-- [x] Backend from GitHub repo
-- [x] MongoDB integration
-- [x] JWT authentication
-- [x] Lovable UI integration
-- [x] 5 AI-powered skills
-- [x] 6 integration placeholders
-- [x] Desktop Agent ready
-- [x] Gemini AI responses
-- [x] Calculator with expression parsing
-- [x] Translator with Hindi support
-- [x] News with summaries
-- [x] Weather with suggestions
-- [x] All pages: Chat, Skills, Integrations, Desktop, Settings
+## How to Use ChatGPT-Codex Automation
 
-## Future Enhancements
-- P1: Connect real weather/news APIs
-- P1: Telegram bot token integration
-- P2: Gmail/Calendar OAuth
-- P2: Voice commands (Whisper)
-- P3: Mobile app
+1. Download from Desktop page
+2. Extract ZIP on Windows PC
+3. Run `START_AUTOMATION.bat`
+4. Select browser (Chrome/Edge/Opera)
+5. Agent will auto-approve and sync!
+
+## Complete (April 7, 2026)
+- [x] All backend APIs
+- [x] All frontend pages
+- [x] AI-powered skills
+- [x] Desktop Agent
+- [x] ChatGPT-Codex automation

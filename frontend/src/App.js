@@ -429,11 +429,20 @@ const Dashboard = () => {
 
             <div className="desktop-actions">
               <h2>📥 Download Desktop Agent</h2>
-              <p>Install BUDDY Desktop Agent on your Windows PC to enable remote automation.</p>
+              <p>Install BUDDY Desktop Agent on your Windows PC to enable remote automation and ChatGPT-Codex auto-reply.</p>
               <div className="download-options">
-                <a href="/desktop_agent/BUDDY_Desktop_Agent.zip" className="btn-primary download-btn">
+                <a href="/BUDDY_Desktop_Agent.zip" download className="btn-primary download-btn">
                   💻 Download for Windows
                 </a>
+              </div>
+              <div className="automation-note">
+                <h4>🤖 ChatGPT + Codex Auto-Reply Features:</h4>
+                <ul>
+                  <li>✅ Auto-approves "Yes", "Run", "Continue" buttons</li>
+                  <li>🔄 Syncs code between Codex and ChatGPT</li>
+                  <li>💬 Auto-copies responses to clipboard</li>
+                  <li>🖥️ Works with Desktop app and Browser</li>
+                </ul>
               </div>
             </div>
 

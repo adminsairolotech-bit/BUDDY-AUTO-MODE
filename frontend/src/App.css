@@ -726,6 +726,30 @@ body {
   margin-bottom: 16px;
 }
 
+.automation-note {
+  margin-top: 20px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.automation-note h4 {
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.automation-note ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.automation-note li {
+  padding: 6px 0;
+  color: var(--text-muted);
+}
+
 .download-btn {
   display: inline-flex;
   align-items: center;
