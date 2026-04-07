@@ -1,81 +1,73 @@
-# OpenClaw Clone - AI Personal Assistant Backend
+# BUDDY AI - Personal Assistant
 
 ## Original Problem Statement
-User shared GitHub repository `BUDDY-AUTO-MODE` (OpenClaw Clone). Task was to set up and build the backend/app logic only - UI will be made separately in Lovable.
+User shared GitHub repository `BUDDY-AUTO-MODE` (OpenClaw Clone). Task was to:
+1. Set up backend from the repository
+2. Integrate Lovable UI (user created separately)
+3. Build complete AI Personal Assistant app
 
 ## Architecture
-- **Backend**: FastAPI (Python)
-- **Database**: MongoDB
-- **Auth**: JWT (access + refresh tokens with revocation)
-- **Scheduler**: APScheduler for cron jobs
-- **AI**: Gemini integration for command parsing (optional)
+- **Backend**: FastAPI (Python) with MongoDB
+- **Frontend**: React (JavaScript) - simplified from Lovable's TypeScript
+- **Auth**: JWT-based authentication
+- **AI**: Local intent parsing (Gemini ready)
 
 ## Core Features Implemented
 
-### Authentication (`/api/auth/*`)
-- User registration with password policy (12+ chars, mixed case, number, special)
-- Login with rate limiting and account lockout
-- JWT access/refresh token flow
-- Token revocation and rotation
-- Email verification (dev mode shows code)
+### Backend (from GitHub repo)
+- User Authentication (register, login, logout, token refresh)
+- Command Processing with intent parsing
+- 5 Built-in Skills (Weather, News, Calculator, Translator, Notes)
+- 6 Integrations (Telegram, Gmail, Calendar, Notion, GitHub, Gemini)
+- Desktop Agent WebSocket support
+- Memory/Learning system
+- Schedule/Cron jobs
 
-### Commands (`/api/command`)
-- Text/voice command processing
-- Intent parsing (local + Gemini AI)
-- Task routing to agents
-- Conversation history
-- Risk scoring for desktop actions
+### Frontend (React)
+- Login/Register pages with glassmorphism design
+- Dashboard with sidebar navigation
+- Chat interface with message history
+- Skills page showing all 5 skills
+- Settings page with profile
+- Quick skill chips for fast access
 
-### Skills (`/api/skills`)
-- 5 built-in skills: Weather, News, Calculator, Translator, Notes
-- Custom skill creation support
-
-### Schedules (`/api/schedules`)
-- Cron-based job scheduling
-- Action execution on schedule
-
-### Integrations (`/api/integrations`)
-- Telegram, Gmail, Calendar, Notion, GitHub, Gemini
-- Connect/disconnect flow with encrypted secrets
-
-### Desktop Agent (`/api/desktop/*` + WebSocket)
-- WebSocket connection for desktop client
-- Remote command execution
-- Status monitoring
-- Confirmation gate for risky actions
-
-### Privacy (`/api/privacy`)
-- Export user data
-- Forget-me (delete all data)
-
-### Memory (`/api/memory`)
-- Store/retrieve user memory
-- Learning from interactions
-- Context building for AI
-
-## User Personas
-- Individual users wanting AI-powered personal assistant
-- Developers integrating with desktop automation
-
-## What's Been Implemented (April 6, 2026)
-- [x] Complete backend from GitHub repo setup
+## What's Been Implemented (April 7, 2026)
+- [x] Backend setup from GitHub repo
 - [x] All API endpoints working
 - [x] MongoDB integration
-- [x] JWT authentication with security features
-- [x] 5 built-in skills seeded
-- [x] 6 integration placeholders
+- [x] JWT authentication
+- [x] Lovable UI integration (converted to React JS)
+- [x] Chat functionality
+- [x] Skills display
+- [x] Settings page
+- [x] Full auth flow
 
 ## Test Credentials
 - Email: test@example.com
 - Password: Password@12345!
 
-## Backlog / Future Features
-- P0: Gemini API key integration for AI parsing
-- P1: Telegram bot actual connection
-- P1: Gmail/Calendar OAuth setup
-- P2: Desktop agent Windows client
-- P2: Voice transcription (Whisper)
-
 ## API Base URL
 - Production: https://buddy-automation.preview.emergentagent.com
-- Health: /api/health
+
+## Backlog / Future Features
+- P0: Gemini API key for enhanced AI responses
+- P1: Desktop Agent Windows client
+- P2: Telegram bot integration
+- P2: Voice commands (Whisper)
+- P3: Original Lovable UI with 3D effects
+
+## Files Structure
+```
+/app/
+├── backend/           # FastAPI backend
+│   ├── server.py      # Main server
+│   ├── api/           # API routes
+│   ├── agents/        # Agent handlers
+│   └── skills/        # Skill implementations
+├── frontend/
+│   └── src/
+│       ├── App.js     # Main React app (all-in-one)
+│       └── App.css    # Styles
+└── memory/
+    └── PRD.md
+```

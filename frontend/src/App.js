@@ -309,7 +309,7 @@ const Dashboard = () => {
               <input
                 value={command}
                 onChange={e => setCommand(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && sendCommand()}
+                onKeyDown={e => e.key === 'Enter' && !loading && sendCommand()}
                 placeholder="Type your command..."
               />
               <button onClick={sendCommand} disabled={loading}>➤</button>
