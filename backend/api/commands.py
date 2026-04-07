@@ -79,7 +79,7 @@ async def _process_command_inner(payload: CommandRequest, current_user: dict, re
 
     context = await ContextBuilder(user_id).build(conversation_id=conversation_id, command=payload.command)
 
-    ai_parse = gemini.parse_command(payload.command, context=context) if gemini else {}
+    ai_parse = gemini.parse_command(payload.command, context=context) if gemini and gemini.is_enabled() else {}
     intent, confidence = parser.parse(payload.command)
     params = parser.extract_params(payload.command, intent)
     action = params.get("action", intent)
@@ -136,6 +136,21 @@ async def _process_command_inner(payload: CommandRequest, current_user: dict, re
     )
 
     assistant_text = ai_parse.get("response_text") or _action_text(intent, result)
+    
+    # Use skill result text if available
+    skill_text = result.get("result", {}).get("text") if result.get("success") else None
+    if skill_text:
+        assistant_text = skill_text
+    # Generate better response using AI if no skill text and AI available
+    elif gemini and gemini.is_enabled() and not ai_parse.get("response_text"):
+        try:
+            assistant_text = gemini.generate_response(
+                f"User asked: {payload.command}\nResult: {result}\nProvide a helpful, concise response.",
+                context=context
+            )
+        except Exception:
+            pass  # Use fallback text
+    
     await conv_repo.append_message(
         user_id,
         conversation_id,

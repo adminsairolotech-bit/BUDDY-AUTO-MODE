@@ -43,11 +43,12 @@ class TaskRouter:
             desktop_action = params.get("action") or action or "open_app"
             return await self.desktop.execute(desktop_action, params, context)
 
-        if intent in {"weather", "news", "skill"}:
+        if intent in {"weather", "news", "calculator", "translator", "notes", "skill"}:
             skill_id = params.get("skill_id") or intent
             return await self.skill.execute("execute_skill", {"skill_id": skill_id, "params": params}, context)
 
         if intent == "search":
             return await self.search.execute("search", params, context)
 
-        return {"success": True, "message": "No direct action routed. Treated as chat.", "echo": params}
+        # Chat intent - return AI generated response text
+        return {"success": True, "message": "Chat response processed.", "intent": intent, "echo": params}
